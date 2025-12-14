@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int bunny_turtle(int next[], int head)
+{
+    int slow = head;
+    int fast = head;
+
+    while (fast != -1 and next[fast] != -1)
+    {
+        slow = next[slow];
+        fast = next[next[fast]];
+
+        if (slow == fast)
+            return true;
+    }
+    return false;
+}
+
+int main()
+{
+    setlocale(LC_ALL,"Russian");
+    int next[5];
+    next[0] = 1;
+    next[1] = 2;
+    next[2] = 3;
+    next[3] = 4;
+    next[4] = -1;
+    int head = 0;
+    if (bunny_turtle(next, head))
+        cout << "есть цикл" << endl;
+    else
+        cout << "цикла нет" << endl;
+    return 0;
+}
